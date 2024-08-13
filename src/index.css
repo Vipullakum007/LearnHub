@@ -1,0 +1,332 @@
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+:root {
+  --bg-color: #f4f3ff;
+  --btn-color: #646cff;
+  --dark-color: #242424;
+  --helper-color: #99b9ff;
+}
+
+p,
+li,
+label,
+textarea {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.1rem;
+  word-spacing: 0.06rem;
+}
+
+a {
+  font-weight: 500;
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+  color: var(--btn-color);
+  text-decoration: inherit;
+  transition: hover 0.3s ease-in-out;
+}
+
+a:hover {
+  background-color: rgba(127, 255, 212, 0.573);
+  text-decoration: underline;
+}
+
+button {
+  background-color: #0044cc;
+  /* Dark blue background */
+  color: #ffffff;
+  /* White text color */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #003399;
+  /* Darker blue on hover */
+  transform: scale(1.05);
+  /* Slightly enlarge on hover */
+}
+
+button:focus {
+  outline: none;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1em;
+  /* margin-bottom: 5px; */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+  border-color: #0044cc;
+  outline: none;
+}
+
+label {
+  font-size: 1em;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+  /* Dark grey text color */
+}
+
+/* Container Styles */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header Styles */
+header {
+  background: #0044cc;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+/* Footer Styles */
+footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+/* react toastify css */
+.toastBody {
+  font-family: "Atlas Grotesk web", Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  width: auto;
+}
+
+
+/*? layout Rule  */
+
+.container {
+  max-width: 140rem;
+  padding: 4rem 2.4rem;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  gap: 6.4rem;
+}
+
+.grid-two-cols {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-four-cols {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/** -----------------------
+** registration section css
+** -------------------------  */
+
+.section-registration {
+  padding: 0 3.2rem;
+
+  & .container {
+    /* background-color: #fff; */
+    padding-top: 3.2rem;
+    align-items: center;
+
+    & img {
+      width: 80%;
+      height: auto;
+    }
+  }
+
+  & .registration-form {
+    & label {
+      display: block;
+      margin: 1.4rem 0 0.8rem 0;
+      text-transform: capitalize;
+    }
+
+    & input {
+      width: 80%;
+      padding: 0.6rem 0.6rem;
+    }
+
+    & button {
+      margin-top: 3.2rem;
+    }
+  }
+}
+
+.hero {
+  /* background: url('/images/hero-bg.jpg') no-repeat center center/cover; */
+  background-color: #e0f7fa;
+  color: black;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  font-size: 3em;
+  margin: 0;
+}
+
+.hero p {
+  font-size: 1.5em;
+  margin: 20px 0;
+}
+
+/* Card Styles */
+
+.format {
+  background-color: aliceblue;
+
+  & h2 {
+    text-align: center;
+    letter-spacing: 0.07rem;
+  }
+}
+
+.languages,
+.featured {
+  display: flex;
+  flex-direction: row;
+
+  & .card {
+    width: 30%;
+  }
+}
+
+.card,
+.card1 {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 15px;
+  padding: 20px;
+  text-align: center;
+}
+
+
+.card-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.card-info {
+  margin-top: 15px;
+}
+
+.enroll-btn {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+.enroll-btn:hover {
+  background-color: #2980b9;
+}
+
+.info-line {
+  font-weight: bold;
+}
+
+/* Featured and Practice Sections Styles */
+.featured,
+.practice {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.practice {
+  margin-top: 30px;
+}
+
+.card1 {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 15px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Community Section Styles */
+.community {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+footer ul li {
+  margin: 0 15px;
+}
+
+footer ul li a {
+  color: #fff;
+}
+
+footer ul li a:hover {
+  color: #3498db;
+}
+
+.social-icons a {
+  margin: 0 10px;
+}
+
+.social-icons img {
+  vertical-align: middle;
+}
