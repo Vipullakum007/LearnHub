@@ -7,6 +7,8 @@ import { Logout } from "./pages/Logout";
 import { Navbar } from "./Components/Navbar";
 import { Footer } from "./Components/Footer";
 import Course from "./pages/Course";
+import { Problem } from "./pages/Problem";
+import { AddProblem } from "./pages/AddProblem";
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/courses" element={<Course />} />
           <Route path="/about" element={<About />} />
+          <Route path="/problem" element={<Problem />} />
+          <Route path="/addproblem" element={<AddProblem />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />

@@ -301,6 +301,8 @@ footer {
   color: #fff;
   padding: 20px;
   text-align: center;
+  height: 12%;
+  position: relative;
 }
 
 footer ul {
@@ -322,11 +324,10 @@ footer ul li a {
 footer ul li a:hover {
   color: #3498db;
 }
-
-.social-icons a {
-  margin: 0 10px;
-}
-
-.social-icons img {
-  vertical-align: middle;
+.social-icons{
+  display: flex;
+  flex-direction: row;
+  margin: 5px auto;
+  width: 20%;
+  justify-content: space-between;
 }

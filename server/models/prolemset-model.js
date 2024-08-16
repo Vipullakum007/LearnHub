@@ -4,7 +4,14 @@ const problemSetSchema = new mongoose.Schema({
     pid: {
         type: mongoose.Schema.Types.ObjectId,
         auto: true,
-        required: true
+        required: true,
+        unique: true,
+    },
+    pno: {
+        type: Number,
+        required: true,
+        unique: true,
+        index: true, // for efficient searching and sorting
     },
     ptitle: {
         type: String,
@@ -19,19 +26,37 @@ const problemSetSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    examples: [{
+        input: {
+            type: String,
+            required: true,
+        },
+        output: {
+            type: String,
+            required: true
+        },
+        explanation: {
+            type: String,
+            required: true
+        }
+    }],
     solution: {
         type: String,
         required: true
     },
-    inputArray: {
-        type: [String], // Array of strings to store possible inputs
-        required: true
-    },
-    outputArray: {
-        type: [String], // Array of strings to store expected outputs
-        required: true
-    }
-}, { timestamps: true });
+    testCases: [
+        {
+            input: {
+                type: String,
+                required: true,
+            },
+            output: {
+                type: String,
+                required: true
+            }
+        }
+    ],
+});
 
 const ProblemSet = mongoose.model('ProblemSet', problemSetSchema);
 
