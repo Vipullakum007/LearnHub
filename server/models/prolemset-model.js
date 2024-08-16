@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
 const problemSetSchema = new mongoose.Schema({
-    ptitle: {
-        type: String,
-        required: true
-    },
     pid: {
         type: mongoose.Schema.Types.ObjectId,
         auto: true,
+        required: true
+    },
+    ptitle: {
+        type: String,
         required: true
     },
     difficulty: {
