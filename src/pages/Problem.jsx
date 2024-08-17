@@ -40,7 +40,7 @@ export const Problem = () => {
                 </thead>
                 <tbody>
                     {problems.map((problem, index) => (
-                        <tr key={index}>
+                        <tr key={index} onClick={() => navigate(`/problem/${problem.pno}`)}>
                             <td>{problem.pno}</td>
                             <td>{problem.ptitle}</td>
                             <td>{problem.difficulty}</td>

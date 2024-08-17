@@ -9,6 +9,7 @@ import { Footer } from "./Components/Footer";
 import Course from "./pages/Course";
 import { Problem } from "./pages/Problem";
 import { AddProblem } from "./pages/AddProblem";
+import { Solver } from "./pages/Solver";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/courses" element={<Course />} />
           <Route path="/about" element={<About />} />
           <Route path="/problem" element={<Problem />} />
+          <Route path="/problem/:pno" element={<Solver />} />
           <Route path="/addproblem" element={<AddProblem />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />

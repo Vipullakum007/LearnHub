@@ -1,0 +1,73 @@
+.problem-detail-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    height: 90vh;
+}
+
+.problem-details {
+    /* width: 45%; */
+    padding-right: 20px;
+    border-right: 1px solid #ccc;
+}
+
+.left-container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    overflow-y: auto;
+}
+
+.right-container {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    overflow-y: auto;
+}
+
+.code-editor {
+    /* width: 50%; */
+    padding-left: 20px;
+}
+
+.test-cases {
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.testcase-results {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+
+    & div {
+        margin-right: 20px;
+        border-right: 2px solid black;
+
+        &:last-child {
+            border: none;
+        }
+    }
+}
+
+.resultPassed {
+    color: green;
+}
+
+.resultFailed {
+    color: red;
+}
+.tab-navigation button {
+    padding: 10px;
+    margin-right: 5px;
+    background-color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+}
+
+.tab-navigation .active-tab {
+    background-color: #e0e0e0;
+    font-weight: bold;
+}
