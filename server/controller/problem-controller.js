@@ -1,4 +1,23 @@
 const Problem = require('../models/prolemset-model')
+const compiler = require("compilex");
+const options = { stats: true }; // Optional: Enable stats
+compiler.init(options);
+
+
+const fetchProblem = async (req, res) => {
+    try {
+        const pno = req.params.pno;
+        console.log(pno);
+        const problem = await Problem.findOne({ pno });
+        if (!problem) {
+            res.status(404).json({ message: 'No problems found' });
+        }
+        res.status(200).json({ problem });
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 
 const fetchAllProblems = async (req, res) => {
     try {
@@ -80,4 +99,87 @@ const deleteProblem = async (req, res) => {
     }
 }
 
-module.exports = { fetchAllProblems, addProblem, deleteProblem }
+const runProblem = async (req, res) => {
+    const code = req.body.code;
+    const input = req.body.input || ''; // Default to empty string if no input provided
+    const lang = req.body.language;
+
+    console.log('code : ', code);
+    console.log('lang : ', lang)
+    console.log('input : ', input);
+
+    let envData = { OS: "windows", options: { timeout: 10000 } }; // Basic environment data
+
+    try {
+        switch (lang) {
+            case 'Cpp':
+                envData.cmd = "g++";
+                if (!input) {
+                    compiler.compileCPP(envData, code, (data) => {
+                        if (data.error) {
+                            res.status(500).send({ output: "error", details: data.error });
+                        } else {
+                            res.send({ output: data.output });
+                        }
+                    });
+                } else {
+                    compiler.compileCPPWithInput(envData, code, input, (data) => {
+                        if (data.error) {
+                            res.status(500).send({ output: "error", details: data.error });
+                        } else {
+                            res.send({ output: data.output });
+                        }
+                    });
+                }
+                break;
+
+            case 'Java':
+                if (!input) {
+                    compiler.compileJava(envData, code, (data) => {
+                        if (data.error) {
+                            res.status(500).send({ output: "error", details: data.error });
+                        } else {
+                            res.send({ output: data.output });
+                        }
+                    });
+                } else {
+                    compiler.compileJavaWithInput(envData, code, input, (data) => {
+                        if (data.error) {
+                            res.status(500).send({ output: "error", details: data.error });
+                        } else {
+                            res.send({ output: data.output });
+                        }
+                    });
+                }
+                break;
+
+            case 'Python':
+                if (!input) {
+                    compiler.compilePython(envData, code, (data) => {
+                        if (data.error) {
+                            res.status(500).send({ output: "error", details: data.error });
+                        } else {
+                            res.send({ output: data.output });
+                        }
+                    });
+                } else {
+                    compiler.compilePythonWithInput(envData, code, input, (data) => {
+                        if (data.error) {
+                            res.status(500).send({ output: "error", details: data.error });
+                        } else {
+                            res.send({ output: data.output });
+                        }
+                    });
+                }
+                break;
+
+            default:
+                res.status(400).send({ output: "error", details: "Unsupported language" });
+        }
+    } catch (error) {
+        console.error('Compilation error: ', error);
+        res.status(500).send({ output: "error", details: "Internal server error" });
+    }
+};
+
+module.exports = { fetchAllProblems, addProblem, deleteProblem, fetchProblem, runProblem };

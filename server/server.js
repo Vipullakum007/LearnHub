@@ -4,7 +4,6 @@ const connectDB = require('./utils/db');
 const userRoutes = require('./router/user-router');
 const problemRoutes = require('./router/problem-router');
 const cors = require("cors");
-
 const port = process.env.PORT || 5000;
 
 const app = express();
