@@ -185,7 +185,7 @@ export const AddProblem = () => {
         }
       }
     });
-    console.log('test cases : ',testCases);
+    console.log('test cases : ', testCases);
     return testCases;
 
   };
@@ -193,8 +193,9 @@ export const AddProblem = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(' problem : ', formData.problem[0]);
-    const problemData = formData.problem[0];
+    console.log('form data : ', formData);
+    console.log(' problem : ', formData.problem[1]);
+    const problemData = formData.problem[1];
     try {
       const response = await fetch("http://localhost:5000/api/problem/add", {
         method: 'POST',
@@ -246,7 +247,7 @@ export const AddProblem = () => {
                 name="difficulty"
                 value={problem.difficulty}
                 onChange={(e) => setProblem({ ...problem, difficulty: e.target.value })}
-                style={{ width: "100%", padding: "10px" , fontSize:"1rem"}}
+                style={{ width: "100%", padding: "10px", fontSize: "1rem" }}
               >
                 <option value="">Select Difficulty</option>
                 <option value="Easy">Easy</option>
@@ -474,14 +475,14 @@ export const AddProblem = () => {
             ></div>
           </div>
           {renderStep()}
+          <button
+            type="submit"
+            className="submitbtn"
+            style={{ padding: "10px", marginTop: "20px" }}
+          >
+            Submit
+          </button>
         </form>
-        <button
-          type="submit"
-          className="submitbtn"
-          style={{ padding: "10px", marginTop: "20px", display: currentStep === 6 ? "block" : "none" }}
-        >
-          Submit
-        </button>
       </div>
       {/* {modalData && (
         <div className="modal">

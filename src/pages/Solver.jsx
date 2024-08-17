@@ -13,7 +13,6 @@ export const Solver = () => {
     const [activeTab, setActiveTab] = useState('description');
     const [solution, setSolution] = useState(null);
 
-
     const handleEditorChange = (value) => {
         setCode(value);
     };
@@ -73,7 +72,6 @@ export const Solver = () => {
         }
     };
 
-
     useEffect(() => {
         const fetchProblemDetails = async () => {
             try {
@@ -85,6 +83,8 @@ export const Solver = () => {
                 });
                 const data = await response.json();
                 setProblem(data.problem);
+                console.log('response : ', data);
+                setSolution(data.problem.solution);
             } catch (error) {
                 console.error('Error fetching problem details : ' + error);
             }
@@ -99,13 +99,13 @@ export const Solver = () => {
 
     return (
         <div className="problem-detail-container">
-            <div className="left-container">
+
+            {/* <div className="left-container">
 
                 <div className="problem-details">
                     <h1><span>{problem.pno} . </span>{problem.ptitle}</h1>
                     <p><strong>Description:</strong> {problem.pstatement}</p>
                     <p><strong>Difficulty:</strong> {problem.difficulty}</p>
-                    <p><strong>Solution : </strong>{problem.solution}</p>
                     <hr />
 
                     <p><strong>Examples:</strong></p>
@@ -125,9 +125,9 @@ export const Solver = () => {
                         ))}
                     </ul>
                 </div>
-            </div>
+            </div> */}
 
-            {/* <div className="left-container">
+            <div className="left-container">
                 <div className="tab-navigation">
                     <button onClick={() => setActiveTab('description')} className={activeTab === 'description' ? 'active-tab' : ''}>
                         📝 Description
@@ -140,7 +140,9 @@ export const Solver = () => {
                 {activeTab === 'description' && (
                     <div className="problem-details">
                         <h1><span>{problem.pno} . </span>{problem.ptitle}</h1>
-                        <p><strong>Description:</strong> {problem.pstatement}</p>
+                        <p><strong>Description:</strong>
+                            <div dangerouslySetInnerHTML={{ __html: problem.pstatement }} />
+                        </p>
                         <p><strong>Difficulty:</strong> {problem.difficulty}</p>
                         <hr />
 
@@ -165,19 +167,19 @@ export const Solver = () => {
 
                 {activeTab === 'solution' && (
                     <div className="solution-details">
-                        
+
                         {solution ? (
                             <div>
                                 <h2>Solution</h2>
-                                <pre>{solution.code}</pre>
-                                <p><strong>Explanation:</strong> {solution.explanation}</p>
+                                <pre>{solution}</pre>
+                                {/* <p><strong>Explanation:</strong> {solution.explanation}</p> */}
                             </div>
                         ) : (
                             <p>Solution not found in the database.</p>
                         )}
                     </div>
                 )}
-            </div> */}
+            </div>
             <div className="right-container">
                 <div className="code-editor">
                     <MonacoEditor
