@@ -14,7 +14,7 @@ const fetchAllProblems = async (req, res) => {
 
 const addProblem = async (req, res) => {
     try {
-        const { pno, ptitle, difficulty, pstatement, solution, examples, testCases } = req.body;
+        const { pno, ptitle, difficulty, pstatement, constraints, examples, testCases, solution } = req.body;
 
         const existProblem = await Problem.findOne({ ptitle });
         if (existProblem) {
@@ -27,9 +27,10 @@ const addProblem = async (req, res) => {
             ptitle,
             difficulty,
             pstatement,
-            solution,
+            constraints,
             examples,
-            testCases
+            testCases,
+            solution,
         });
 
         await newProblem.save();

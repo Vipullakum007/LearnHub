@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '../Components/Card';
+import Footer from '../Components/Footer';
 
 const languages = [
   { title: 'C++', imgSrc: 'Logo/c++.png', description: 'Learn the basics of C++ programming language. Join community' ,link:"#"},
@@ -73,6 +74,8 @@ export const Home = () => (
         <a href="/addproblem">Add problems</a>
       </section>
     </section>
+
+    <Footer />
   </>
 );
 

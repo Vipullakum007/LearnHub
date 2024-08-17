@@ -40,6 +40,10 @@ const problemSetSchema = new mongoose.Schema({
             required: true
         }
     }],
+    constraints: {
+        type: [String],
+        default: []
+    },
     solution: {
         type: String,
         required: true

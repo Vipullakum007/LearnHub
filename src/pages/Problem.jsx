@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Problem.css'; // Import the CSS file
 
 export const Problem = () => {
     const [problems, setProblems] = useState([]);
+    const navigate = useNavigate();
 
     const fetchAllProblems = async () => {
         try {
@@ -27,7 +29,7 @@ export const Problem = () => {
     return (
         <div className="problem-container">
             <h2>Problem Page</h2>
-            <button type="button">Add Problem</button>
+            <button type="button" onClick={() => { navigate('/addproblem') }}>Add Problem</button>
             <table className="problem-table">
                 <thead>
                     <tr>
