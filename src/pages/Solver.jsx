@@ -12,7 +12,13 @@ export const Solver = () => {
     const [hasRunTests, setHasRunTests] = useState(false);
     const [activeTab, setActiveTab] = useState('description');
     const [solution, setSolution] = useState(null);
-
+    const [problemResult, setProblemResult] = useState('');
+    const [solutionOfUser, setSolutionOfUser] = useState({
+        pid: '',
+        uid: '',
+        code: '',
+        status: ''
+    });
     const handleEditorChange = (value) => {
         setCode(value);
     };
@@ -57,11 +63,14 @@ export const Solver = () => {
                         error: result.error,
                         passed: false
                     });
+                    setProblemResult('Failed');
+                    return;
                 }
             }
 
             setTestCaseResults(testCaseResults);
             setHasRunTests(true);
+            setProblemResult('Passed');
             console.log("Execution results: ", testCaseResults);
 
 
@@ -93,6 +102,32 @@ export const Solver = () => {
         fetchProblemDetails();
     }, [pno]);
 
+    const user_id = localStorage.getItem('userid');
+
+    useEffect(() => {
+        setSolutionOfUser( {
+            pid: pno,
+            uid: user_id,
+            code: JSON.stringify(code),
+            status: problemResult
+        });
+        console.log('solution : ', solutionOfUser);
+
+    }, [problemResult]);
+
+    const addSolution = async () => {
+        console.log('solution: ', solutionOfUser);
+        const response = await fetch(`http://localhost:5000/api/problem/${pno}/${user_id}/addsolution`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(solution)
+        });
+        if (!response.ok) {
+            console.error('Error adding solution:', response.statusText);
+        }
+    }
     if (!problem) {
         return <div>Loading...</div>;
     }
@@ -170,7 +205,6 @@ export const Solver = () => {
 
                         {solution ? (
                             <div>
-                                <h2>Solution</h2>
                                 <pre>{solution}</pre>
                                 {/* <p><strong>Explanation:</strong> {solution.explanation}</p> */}
                             </div>
@@ -182,6 +216,14 @@ export const Solver = () => {
             </div>
             <div className="right-container">
                 <div className="code-editor">
+                    {/* dropdownlist for select language */}
+                    <select value={lang} onChange={(e) => setLang(e.target.value)}>
+                        <option value="Cpp">C++</option>
+                        <option value="Java">Java</option>
+                        <option value="Python">Python</option>
+                    </select>
+                    {/* problem status */}
+                    <p>Status: {problemResult}</p>
                     <MonacoEditor
                         height="400px"
                         language="cpp"
@@ -192,6 +234,7 @@ export const Solver = () => {
                 </div>
                 <div className="test-cases">
                     <button onClick={runTestCases}>Run Test Cases</button>
+                    <button onClick={addSolution}>Submit Code</button>
 
                     {!hasRunTests ? (
                         <div>

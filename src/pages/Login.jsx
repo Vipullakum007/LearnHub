@@ -37,6 +37,8 @@ export const Login = () => {
       if (response.ok) {
         toast.success("Login successful");
         localStorage.setItem('token', responseData.token);
+        localStorage.setItem('username', responseData.username);
+        localStorage.setItem('userid', responseData.userid);
         setUser({ username: "", password: "" });
         navigate("/");
       } else {

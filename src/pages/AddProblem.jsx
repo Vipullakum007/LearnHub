@@ -194,8 +194,8 @@ export const AddProblem = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('form data : ', formData);
-    console.log(' problem : ', formData.problem[1]);
-    const problemData = formData.problem[1];
+    console.log(' problem : ', formData.problem[0]);
+    const problemData = formData.problem[0];
     try {
       const response = await fetch("http://localhost:5000/api/problem/add", {
         method: 'POST',

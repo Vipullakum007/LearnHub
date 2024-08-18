@@ -14,6 +14,10 @@ const solutionSchema = new mongoose.Schema({
     code: {
         type: String,
         required: true
+    },
+    status: {
+        type: String,
+        required: true,
     }
 }, { timestamps: true });
 

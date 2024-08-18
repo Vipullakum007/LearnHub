@@ -12,6 +12,7 @@ const signup = async (req, res) => {
 
         const existingUser = await User.findOne({ email });
         if (existingUser) {
+            console.log({ error: "Email already exists " });
             return res.status(400).json({ message: "Email already exists " });
         }
 
@@ -20,7 +21,7 @@ const signup = async (req, res) => {
         const newUser = new User({ username, email, password: hashedPassword });
         await newUser.save();
 
-        res.status(201).json({ message: "User created sucessfully ", newUser});
+        res.status(201).json({ message: "User created sucessfully ", newUser });
 
     } catch (error) {
         console.error(error);
@@ -49,7 +50,7 @@ const login = async (req, res) => {
             { expiresIn: '1h' }
         );
 
-        res.status(200).json({ message: 'Login successful', token });
+        res.status(200).json({ message: 'Login successful', token, username: userExist.username, userid: userExist._id.toString() });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error', error: error.message });

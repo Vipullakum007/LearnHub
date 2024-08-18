@@ -26,20 +26,22 @@ const problemSetSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    examples: [{
-        input: {
-            type: String,
-            required: true,
-        },
-        output: {
-            type: String,
-            required: true
-        },
-        explanation: {
-            type: String,
-            required: true
+    examples: [
+        {
+            input: {
+                type: String,
+                required: true,
+            },
+            output: {
+                type: String,
+                required: true
+            },
+            explanation: {
+                type: String,
+                required: true
+            }
         }
-    }],
+    ],
     constraints: {
         type: [String],
         default: []

@@ -1,4 +1,5 @@
 const Problem = require('../models/prolemset-model')
+const Solution = require('../models/solutions-model')
 const compiler = require("compilex");
 const options = { stats: true }; // Optional: Enable stats
 compiler.init(options);
@@ -84,6 +85,7 @@ const addProblem = async (req, res) => {
     }
 }
 */
+
 const deleteProblem = async (req, res) => {
     try {
         const id = req.params.id;
@@ -182,4 +184,17 @@ const runProblem = async (req, res) => {
     }
 };
 
-module.exports = { fetchAllProblems, addProblem, deleteProblem, fetchProblem, runProblem };
+const addSolution = async (req, res) => {
+    const { problemid, userid, code, status } = req.body;
+    try {
+        const newSolution = new Solution({ problemid, userid, code, status });
+        await newSolution.save();
+        return res.status(201).json({ message: "Solution added successfully", solution: newSolution });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error in adding solution" });
+    }
+};
+
+
+module.exports = { fetchAllProblems, addProblem, deleteProblem, fetchProblem, runProblem, addSolution };
